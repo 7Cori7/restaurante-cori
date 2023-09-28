@@ -112,10 +112,15 @@ function mostrarMenu(menu){
             agregarOrden({...pos,cantidad});//<--le envio el json + la cantidad
         }
 
+        /*const agregar = document.createElement('div');
+        agregar.classList.add('col-md-1','py-3');
+        agregar.appendChild(inputCantidad);*/
+
         fila.appendChild(nombre);
         fila.appendChild(precio);
         fila.appendChild(categoria);
         fila.appendChild(inputCantidad);
+        //fila.appendChild(agregar);
 
         contenido.appendChild(fila);
     })
