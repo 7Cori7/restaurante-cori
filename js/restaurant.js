@@ -154,30 +154,32 @@ function agregarOrden(producto){
         }else{
             //caso de que no exista el producto
             //agregamos el nuevo producto al arreglo
-            cliente.pedido = {...pedido, producto};
+            cliente.pedido = [...pedido, producto];
             
         }
     }else{
         //caso en que cantidad es 0
+        console.log('esta en cero')
         const resultado = pedido.filter(item=>item.id !== producto.id);
-        cliente.producto = resultado;
+        cliente.pedido = resultado;
     }
 
     limpiarHTML();
 
-    console.log(cliente)
+    ////console.log(cliente)
     
 
-   //if(cliente.pedido.length > 0){
+   if(cliente.pedido.length){
         actualizarResumen();
-   // }else{
-        //console.log('pedido vacio')
-    //}
+   }else{
+        mensajePedidoVacio();
+    }
 }
 
 function actualizarResumen(){
     const contenido = document.querySelector('#resumen .contenido');
     const resumen = document.createElement('div');
+    resumen.classList.add('col-md-4', 'card', 'shadow', 'py-5', 'px-3');
 
     //mostrar la mesa
     const mesa = document.createElement('p');
@@ -199,11 +201,15 @@ function actualizarResumen(){
 
     //Mostrar heading:
     const heading = document.createElement('h3');
-    heading.textContent = 'Pedidos';
+    heading.textContent = 'Pedidos:';
     heading.classList.add('my-4');
 
     //Producto Pedido:
     const {pedido} = cliente;
+
+    const grupo = document.createElement('ul');
+    grupo.classList.add('list-group');
+
     pedido.forEach(item=>{
         const {nombre, cantidad, precio, id} = item;
 
@@ -228,16 +234,209 @@ function actualizarResumen(){
         const precioValor = document.createElement('span');
         precioValor.textContent = `$${precio}`;
 
+        cantidadP.appendChild(cantidadValor);
+        precioP.appendChild(precioValor);
 
-    lista.appendChild(nombre, cantidadP, cantidadValor, precioP, precioValor);
+        //Subtotal:
+        const subtotalP = document.createElement('p');
+        subtotalP.classList.add('fw-bold');
+        subtotalP.textContent= 'Subtotal: ';
+
+        const subtotalValor = document.createElement('span');
+        subtotalValor.textContent= calcularSubtotal(item);
+
+        subtotalP.appendChild(subtotalValor);
+
+        //boton eliminar:
+        const btnEliminar = document.createElement('button');
+        btnEliminar.classList.add('btn','btn-danger');
+        btnEliminar.textContent = 'Eliminar Pedido';
+
+        btnEliminar.onclick = function(){
+            eliminarProducto(id);
+        }
+
+
+        //Ubicar en el div:
+
+        lista.appendChild(nombreP);
+        lista.appendChild(cantidadP);
+        lista.appendChild(precioP);
+        lista.appendChild(subtotalP);
+        lista.appendChild(btnEliminar);
+
+        grupo.appendChild(lista);
 
     })
 
-    resumen.appendChild(heading);
+    
+    
     resumen.appendChild(mesa);
     resumen.appendChild(hora);
+    resumen.appendChild(heading);
+    resumen.appendChild(grupo);
 
     contenido.appendChild(resumen);
+
+    //mostrar la calculadora de propinas:
+    formularioPropinas();
+}
+
+function formularioPropinas(){
+    const contenido = document.querySelector('#resumen .contenido');
+    const formulario = document.createElement('div');
+    formulario.classList.add('col-md-4', 'formulario');
+
+    const heading =  document.createElement('h3');
+    heading.classList.add('my-4');
+    heading.textContent = 'Propina';
+
+    //propina 5%
+    const op5 = document.createElement('input');
+    op5.type = 'radio';
+    op5.name = 'propina';
+    op5.value = '5';
+    op5.classList.add('form-check-input');
+    op5.onclick = calcularPropina;
+
+    const labelop5 = document.createElement('label');
+    labelop5.textContent = '5%';
+    labelop5.classList.add('form-check-label');
+
+    //propina 10%
+    const op10 = document.createElement('input');
+    op10.type = 'radio';
+    op10.name = 'propina';
+    op10.value = '5';
+    op10.classList.add('form-check-input');
+    op10.onclick = calcularPropina;
+
+    const labelop10 = document.createElement('label');
+    labelop10.textContent = '10%';
+    labelop10.classList.add('form-check-label');
+
+    //Imprimir en el HTML:
+    formulario.appendChild(heading);
+    formulario.appendChild(labelop5);
+    formulario.appendChild(op5);
+
+    
+    formulario.appendChild(labelop10);
+    formulario.appendChild(op10);
+
+
+    contenido.appendChild(formulario);
+
+    
+
+}
+
+function calcularPropina(){
+    ////console.log('calcularPropina')
+    //forma de seleccionar cualquier input:
+    const radioSeleccionado = document.querySelector('[name="propina"]:checked').value;
+    ////console.log(radioSeleccionado)
+
+    //calcula todo:
+    const {pedido} = cliente;
+    let subtotal = 0;
+
+    pedido.forEach(i=>{
+        subtotal += i.cantidad * i.precio;
+    })
+
+    //contenedores HTML:
+
+    const divTotales =  document.createElement('div');
+    divTotales.classList.add('total-pagar');
+
+    const formulario = document.querySelector('.formulario');
+
+    //HTML propina
+    const propina = (subtotal*parseInt(radioSeleccionado))/100;
+    const iva = subtotal*0.16;
+    const total = propina + iva + subtotal;
+
+    //HTML subtotal
+    const subtotalP = document.createElement('p');
+    subtotalP.textContent = 'Subtotal Pedido: ';
+    subtotalP.classList.add('fw-bold','fs-3','mt-5');
+
+    const subtotalValor = document.createElement('span');
+    subtotalValor.textContent = `$${subtotal}`;
+
+    subtotalP.appendChild(subtotalValor);
+
+    //HTML iva
+    const ivaP = document.createElement('p');
+    ivaP.textContent = 'IVA 16%: ';
+
+    const ivaValor = document.createElement('span');
+    ivaValor.textContent =  `$${iva}`;
+    ivaP.appendChild(ivaValor);
+
+    //HTML propina
+    const propinaP = document.createElement('p');
+    propinaP.textContent = 'Propina: ';
+
+    const propinaValor = document.createElement('span');
+    propinaValor.textContent = `$${propina}`;
+    propinaP.appendChild(propinaValor);
+
+    //HTML Total a pagar
+    const totalP = document.createElement('p');
+    totalP.classList.add('fw-bold');
+    totalP.textContent = 'Total a pagar: ';
+
+
+    const totalValor = document.createElement('span');
+    totalValor.textContent = `$${total}`;
+    totalP.appendChild(totalValor);
+
+    divTotales.appendChild(subtotalP);
+    divTotales.appendChild(ivaP);
+    divTotales.appendChild(propinaP);
+    divTotales.appendChild(totalP);
+
+    formulario.appendChild(divTotales);
+
+}
+
+function calcularSubtotal(p){
+    const {cantidad, precio} = p;
+
+    return `$${cantidad*precio}`;
+}
+
+function eliminarProducto(id){
+    const {pedido} = cliente;
+
+    cliente.pedido =  pedido.filter(i=>i.id !== id);
+
+    limpiarHTML();
+
+    ////console.log(cliente.pedido.length);
+    if(cliente.pedido.length > 0){
+        actualizarResumen();
+    }else{
+        ////console.log('pedido vacio')
+        mensajePedidoVacio();
+    }
+    
+    //ahora como eliminamos el producto debemos actualizar la cantidad a cero
+    //esta es una manera para ubicarse en el input
+    //todo: probar algo asi para el de las chucherias (clase agotado)
+    const productoEliminado = `#producto-${id}`//<--este es un id nuevo que se le esta colocando al input 
+    const inputEliminado = document.querySelector(productoEliminado);
+    inputEliminado.value = 0;
+}
+
+function mensajePedidoVacio(){
+    const contenido = document.querySelector('#resumen .contenido');
+    const texto = document.createElement('p');
+    texto.classList.add('text-center');
+    texto.textContent = 'Agrega producto al pedido';
+    contenido.appendChild(texto);
 }
 
 function limpiarHTML(){
@@ -246,3 +445,12 @@ function limpiarHTML(){
         contenido.removeChild(contenido.firstChild);
     }
 }
+
+
+//todo: HACER UNA FUNCION PARA AGREGAR OTRAS MESAS (con un asign-await) como en el ejercicio agregar-crea usuario. Con un JSON array que tenga:
+
+//* Con inicio de sesion para el mesero
+
+//* Guardar el cliente con el id del mesero y su pedido
+
+//* Menu
