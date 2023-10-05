@@ -451,6 +451,6 @@ function limpiarHTML(){
 
 //* Con inicio de sesion para el mesero
 
-//* Guardar el cliente con el id del mesero y su pedido
+//* Guardar el cliente (mesa) con el id del mesero y su pedido
 
 //* Menu
