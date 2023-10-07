@@ -179,7 +179,7 @@ function agregarOrden(producto){
 function actualizarResumen(){
     const contenido = document.querySelector('#resumen .contenido');
     const resumen = document.createElement('div');
-    resumen.classList.add('col-md-4', 'card', 'shadow', 'py-5', 'px-3');
+    resumen.classList.add('col-md-6', 'card', 'shadow', 'py-5', 'px-3');
 
     //mostrar la mesa
     const mesa = document.createElement('p');
@@ -285,7 +285,7 @@ function actualizarResumen(){
 function formularioPropinas(){
     const contenido = document.querySelector('#resumen .contenido');
     const formulario = document.createElement('div');
-    formulario.classList.add('col-md-4', 'formulario');
+    formulario.classList.add('col-md-6', 'formulario', 'px-5');
 
     const heading =  document.createElement('h3');
     heading.classList.add('my-4');
@@ -332,6 +332,7 @@ function formularioPropinas(){
 }
 
 function calcularPropina(){
+
     ////console.log('calcularPropina')
     //forma de seleccionar cualquier input:
     const radioSeleccionado = document.querySelector('[name="propina"]:checked').value;
@@ -385,7 +386,7 @@ function calcularPropina(){
 
     //HTML Total a pagar
     const totalP = document.createElement('p');
-    totalP.classList.add('fw-bold');
+    totalP.classList.add('fw-bold','fs-2','mt-3');
     totalP.textContent = 'Total a pagar: ';
 
 
