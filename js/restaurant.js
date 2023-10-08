@@ -65,10 +65,13 @@ function guardarCliente(){
 }
 
 function mostrarSecciones(){
-    const secciones = document.querySelectorAll('.d-none');//<---esto selecciona todas las clases
-    console.log(secciones)
 
-    secciones.forEach(seccion=>seccion.classList.remove('d-none'));//<---esto quita la clase seleccionada
+    //* Esta funcion es para mostrar en el HTML varias secciones que estan ocultas con la clase de bootstrap "d-none".
+
+    const secciones = document.querySelectorAll('.d-none');//<---esto selecciona todas las clases
+    ////console.log(secciones)
+
+    secciones.forEach(seccion=>seccion.classList.remove('d-none'));//<---esto quita la clase seleccionada y se puede ver ahora en el HTML
 }
 
 function obtenerMenu(){
@@ -84,7 +87,10 @@ function obtenerMenu(){
 }
 
 function mostrarMenu(menu){
+
     const contenido = document.querySelector('#menu .contenido');
+
+
     menu.forEach(pos=>{
         const fila = document.createElement('div');
         fila.classList.add('row','border-top');
@@ -105,23 +111,24 @@ function mostrarMenu(menu){
         inputCantidad.min = 0;
         inputCantidad.value = 0;
         inputCantidad.id = `producto-${pos.id}`;
-        inputCantidad.classList.add('col-md-1');
+        inputCantidad.classList.add('col-md-4');
 
         inputCantidad.onchange = function(){ //<--detecta un cambio
             const cantidad = parseInt(inputCantidad.value);
-            //console.log({...pos,cantidad})
+            ////console.log({...pos,cantidad})
+            //llamar a la funcion agregar orden:
             agregarOrden({...pos,cantidad});//<--le envio el json + la cantidad
         }
 
-        /*const agregar = document.createElement('div');
-        agregar.classList.add('col-md-1','py-3');
-        agregar.appendChild(inputCantidad);*/
+        const agregar = document.createElement('div');
+        agregar.classList.add('col-md-2','py-3');
+        agregar.appendChild(inputCantidad);
 
         fila.appendChild(nombre);
         fila.appendChild(precio);
         fila.appendChild(categoria);
-        fila.appendChild(inputCantidad);
-        //fila.appendChild(agregar);
+        //fila.appendChild(inputCantidad);
+        fila.appendChild(agregar);
 
         contenido.appendChild(fila);
     })
@@ -131,7 +138,7 @@ function agregarOrden(producto){
 
 
     let {pedido} = cliente; //<---extraigo el objeto pedido del arreglo cliente
-    //console.log(producto)//?<---corroboramos que si hay un cambio en el input lo guarde en el objeto
+    ////console.log(producto)//?<---corroboramos que si hay un cambio en el input lo guarde en el objeto
 
     const {pro} = cliente.pedido;
 
@@ -141,7 +148,7 @@ function agregarOrden(producto){
         const existe = pedido.some(item=>item.id === producto.id);
 
         if(existe){
-            //caso en que haya producto
+            //caso en que haya producto, se actualiza la cantidad:
             const pedidoActualizado = pedido.map(i=>{
                 if(i.id === producto.id){
                     i.cantidad = producto.cantidad;
@@ -152,14 +159,13 @@ function agregarOrden(producto){
             cliente.pedido = [...pedidoActualizado]; //<--se actualiza el arreglo con lo que trae el nuevo arreglo pedidoActualizado
 
         }else{
-            //caso de que no exista el producto
-            //agregamos el nuevo producto al arreglo
+            //caso de que no exista el producto, agregamos el nuevo producto al arreglo:
             cliente.pedido = [...pedido, producto];
             
         }
     }else{
         //caso en que cantidad es 0
-        console.log('esta en cero')
+        /////console.log('esta en cero')
         const resultado = pedido.filter(item=>item.id !== producto.id);
         cliente.pedido = resultado;
     }
@@ -174,6 +180,7 @@ function agregarOrden(producto){
    }else{
         mensajePedidoVacio();
     }
+    
 }
 
 function actualizarResumen(){
@@ -450,8 +457,10 @@ function limpiarHTML(){
 
 //todo: HACER UNA FUNCION PARA AGREGAR OTRAS MESAS (con un asign-await) como en el ejercicio agregar-crea usuario. Con un JSON array que tenga:
 
-//* Con inicio de sesion para el mesero
+//* Mesero(JSON array) y mesas/clientes(JSON array)
 
-//* Guardar el cliente (mesa) con el id del mesero y su pedido
+// Con inicio de sesion para el mesero
 
-//* Menu
+// Guardar el cliente (mesa) con el id del mesero y su pedido
+
+// Menu
