@@ -1,0 +1,17 @@
+{
+    "mesero":[
+        {
+            "id": 1,
+            "nombre": "Pepito"
+        },
+        {
+            "id": 2,
+            "nombre": "Frank"
+        },
+        {
+            "id": 3,
+            "nombre": "Maria"
+        }
+    ],
+    "mesas":[]
+}
