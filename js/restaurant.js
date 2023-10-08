@@ -1,7 +1,7 @@
-//Selectores:
+//* Selectores:
 const btnGuardarCliente = document.querySelector('#guardar-cliente');
 
-//Estructura para guardar
+//* Estructura para guardar
 let cliente = {
     mesa:'',
     hora:'',
@@ -17,22 +17,22 @@ const categorias = {
     6:'Bebidas'
 }
 
-//Eventos:
+//* Eventos:
 btnGuardarCliente.addEventListener('click', guardarCliente);
 
-//Funciones:
+//* Funciones:
 function guardarCliente(){
     const mesa = document.querySelector('#mesa').value;
     const hora = document.querySelector('#hora').value;
 
+
     //Validar los campos:
 
-    
     const camposVacios = [mesa,hora].some(campo=>campo === ''); // <--- una alternativa a un if(mesa ==='' || hora ==='')
 
     if(camposVacios){
         //Si estan vacios:
-        console.log('campos vacios')
+        ////console.log('campos vacios')
         const  existeAlerta = document.querySelector('.invalid-feedback'); //<---esta clase se utiliza como "bandera" (no se encuentra en el html)
 
         if(!existeAlerta){
@@ -49,7 +49,7 @@ function guardarCliente(){
         }
     }else{
         //Si los campos estan llenos:
-        //console.log('campos llenos')
+        /////console.log('campos llenos')
 
         cliente = {...cliente,mesa,hora};//<---se capturan los datos actuales en el objeto
         console.log(cliente)
