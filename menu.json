@@ -121,8 +121,20 @@
             "categoria":2
         }
     ],
+    "meseros":[
+        {
+            "nombre":"Pepito",
+            "id":1
+        },
+        {
+            "nombre":"Frank",
+            "id":2 
+        },
+        {
+            "nombre":"Maria",
+            "id":3 
+        }
+    ],
 
-    "clientes":[
-        
-    ]
+    "clientes":[]
 }
