@@ -4,6 +4,7 @@ console.log(mesero)
 //* Selectores:
 const btnGuardarCliente = document.querySelector('#guardar-cliente');
 const cerrarBtn = document.querySelector('#cerrar-btn');
+const perfilBtn = document.querySelector('#perfil-btn');
 
 //Validar la ruta:
 if(!mesero){
@@ -29,6 +30,16 @@ const categorias = {
 
 //* Eventos:
 btnGuardarCliente.addEventListener('click', guardarCliente);
+
+perfilBtn.addEventListener('click', async e=> {
+    window.location.href = '../tareas/tareas.html';
+})
+
+cerrarBtn.addEventListener('click', async e=> {
+    localStorage.removeItem('user');
+    window.location.href = '../home/index.html';
+})
+
 
 //* Funciones:
 function guardarCliente(){
@@ -137,7 +148,6 @@ function mostrarMenu(menu){
         fila.appendChild(nombre);
         fila.appendChild(precio);
         fila.appendChild(categoria);
-        //fila.appendChild(inputCantidad);
         fila.appendChild(agregar);
 
         contenido.appendChild(fila);
@@ -146,11 +156,8 @@ function mostrarMenu(menu){
 
 function agregarOrden(producto){
 
-
     let {pedido} = cliente; //<---extraigo el objeto pedido del arreglo cliente
     ////console.log(producto)//?<---corroboramos que si hay un cambio en el input lo guarde en el objeto
-
-    const {pro} = cliente.pedido;
 
     if(producto.cantidad > 0){
 
@@ -170,8 +177,7 @@ function agregarOrden(producto){
 
         }else{
             //caso de que no exista el producto, agregamos el nuevo producto al arreglo:
-            cliente.pedido = [...pedido, producto];
-            
+            cliente.pedido = [...pedido, producto];       
         }
     }else{
         //caso en que cantidad es 0
@@ -181,10 +187,7 @@ function agregarOrden(producto){
     }
 
     limpiarHTML();
-
-    ////console.log(cliente)
     
-
    if(cliente.pedido.length){
         actualizarResumen();
    }else{
@@ -375,6 +378,10 @@ function calcularPropina(){
     const iva = subtotal*0.16;
     const total = propina + iva + subtotal;
 
+    const precioT = total.toFixed(2);
+
+    cliente.total = precioT;
+
     //HTML subtotal
     const subtotalP = document.createElement('p');
     subtotalP.textContent = 'Subtotal Pedido: ';
@@ -408,7 +415,7 @@ function calcularPropina(){
 
 
     const totalValor = document.createElement('span');
-    totalValor.textContent = `$${total}`;
+    totalValor.textContent = `$${precioT}`;
     totalP.appendChild(totalValor);
 
     //Boton de guardar pedido:
@@ -473,9 +480,8 @@ function limpiarHTML(){
 }
 
 async function guradarPedido(){
-    console.log('Guardando el pedido');
+    ////console.log('Guardando el pedido');
 
-    
         await fetch('http://localhost:3000/clientes', {
             method: 'POST',
             headers: {
@@ -484,22 +490,6 @@ async function guradarPedido(){
             body:JSON.stringify({mesero:mesero.nombre,cliente})
         })
 
-        const respuesta = await fetch('http://localhost:3000/clientes', {
-        method:'GET'
-        });
-
-        const clientes = await respuesta.json();
-
-        const client = clientes.find(i=>i.mesero===mesero.nombre);
-
-        localStorage.setItem('mesas', JSON.stringify(client))
         window.location.href = '../tareas/tareas.html';
-
-
     
 }
-
-cerrarBtn.addEventListener('click', async e=> {
-    localStorage.removeItem('user');
-    window.location.href = '../home/index.html';
-})

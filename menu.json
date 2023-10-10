@@ -123,16 +123,8 @@
   ],
   "meseros": [
     {
-      "nombre": "Pepito",
-      "id": 1
-    },
-    {
       "nombre": "Frank",
       "id": 2
-    },
-    {
-      "nombre": "Maria",
-      "id": 3
     },
     {
       "nombre": "Luna",
@@ -141,38 +133,51 @@
     {
       "nombre": "Bonny",
       "id": 5
+    },
+    {
+      "nombre": "Leo",
+      "id": 6
     }
   ],
   "clientes": [
     {
       "mesero": "Luna",
       "cliente": {
-        "mesa": "2",
-        "hora": "12:20",
+        "mesa": "3",
+        "hora": "19:38",
         "pedido": [
           {
             "id": 3,
             "nombre": "Pizza grande",
             "precio": 20,
             "categoria": 1,
-            "cantidad": 2
+            "cantidad": 1
+          },
+          {
+            "id": 2,
+            "nombre": "Pizza mediana",
+            "precio": 15,
+            "categoria": 1,
+            "cantidad": 1
           },
           {
             "id": 17,
             "nombre": "Cerveza",
             "precio": 0.5,
             "categoria": 6,
-            "cantidad": 6
+            "cantidad": 4
           }
-        ]
+        ],
+        "total": "44.77"
       },
-      "id": 1
+      "id": 1,
+      "checked": true
     },
     {
       "mesero": "Luna",
       "cliente": {
-        "mesa": "5",
-        "hora": "14:21",
+        "mesa": "7",
+        "hora": "18:43",
         "pedido": [
           {
             "id": 6,
@@ -193,49 +198,12 @@
             "nombre": "Late vainilla",
             "precio": 2,
             "categoria": 5,
-            "cantidad": 1
-          },
-          {
-            "id": 16,
-            "nombre": "Capuchino",
-            "precio": 2,
-            "categoria": 5,
-            "cantidad": 1
+            "cantidad": 2
           }
-        ]
+        ],
+        "total": "16.94"
       },
       "id": 2
-    },
-    {
-      "mesero": "Frank",
-      "cliente": {
-        "mesa": "1",
-        "hora": "13:23",
-        "pedido": [
-          {
-            "id": 3,
-            "nombre": "Pizza grande",
-            "precio": 20,
-            "categoria": 1,
-            "cantidad": 1
-          },
-          {
-            "id": 20,
-            "nombre": "helado de chocolate",
-            "precio": 2,
-            "categoria": 2,
-            "cantidad": 2
-          },
-          {
-            "id": 10,
-            "nombre": "Jugo de parchita",
-            "precio": 2,
-            "categoria": 3,
-            "cantidad": 2
-          }
-        ]
-      },
-      "id": 3
     }
   ]
 }
