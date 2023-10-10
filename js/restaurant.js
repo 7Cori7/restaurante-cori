@@ -1,5 +1,15 @@
+const mesero = JSON.parse(localStorage.getItem('user'));
+console.log(mesero)
+
 //* Selectores:
 const btnGuardarCliente = document.querySelector('#guardar-cliente');
+const cerrarBtn = document.querySelector('#cerrar-btn');
+
+//Validar la ruta:
+if(!mesero){
+    //caso de que el usuario no este en el localsotrage(no inicio sesion)
+    window.location.href = '../home/index.html';
+}
 
 //* Estructura para guardar
 let cliente = {
@@ -401,10 +411,18 @@ function calcularPropina(){
     totalValor.textContent = `$${total}`;
     totalP.appendChild(totalValor);
 
+    //Boton de guardar pedido:
+    const btnGuardar = document.createElement('button');
+    btnGuardar.textContent = 'Guardar Pedido';
+    btnGuardar.classList.add('btn', 'btn-success');
+    btnGuardar.onclick = guradarPedido;
+
+
     divTotales.appendChild(subtotalP);
     divTotales.appendChild(ivaP);
     divTotales.appendChild(propinaP);
     divTotales.appendChild(totalP);
+    divTotales.appendChild(btnGuardar);
 
     formulario.appendChild(divTotales);
 
@@ -453,6 +471,18 @@ function limpiarHTML(){
         contenido.removeChild(contenido.firstChild);
     }
 }
+
+function guradarPedido(){
+    console.log('Guardando el pedido');
+
+    localStorage.setItem('mesas', JSON.stringify(cliente))
+    window.location.href = '../tareas/tareas.html';
+}
+
+cerrarBtn.addEventListener('click', async e=> {
+    localStorage.removeItem('user');
+    window.location.href = '../home/index.html';
+})
 
 
 //todo: HACER UNA FUNCION PARA AGREGAR OTRAS MESAS (con un asign-await) como en el ejercicio agregar-crea usuario. Con un JSON array que tenga:
