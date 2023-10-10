@@ -143,5 +143,99 @@
       "id": 5
     }
   ],
-  "clientes": []
+  "clientes": [
+    {
+      "mesero": "Luna",
+      "cliente": {
+        "mesa": "2",
+        "hora": "12:20",
+        "pedido": [
+          {
+            "id": 3,
+            "nombre": "Pizza grande",
+            "precio": 20,
+            "categoria": 1,
+            "cantidad": 2
+          },
+          {
+            "id": 17,
+            "nombre": "Cerveza",
+            "precio": 0.5,
+            "categoria": 6,
+            "cantidad": 6
+          }
+        ]
+      },
+      "id": 1
+    },
+    {
+      "mesero": "Luna",
+      "cliente": {
+        "mesa": "5",
+        "hora": "14:21",
+        "pedido": [
+          {
+            "id": 6,
+            "nombre": "Torta de chocolate",
+            "precio": 5,
+            "categoria": 2,
+            "cantidad": 1
+          },
+          {
+            "id": 7,
+            "nombre": "Torta de fresa",
+            "precio": 5,
+            "categoria": 2,
+            "cantidad": 1
+          },
+          {
+            "id": 15,
+            "nombre": "Late vainilla",
+            "precio": 2,
+            "categoria": 5,
+            "cantidad": 1
+          },
+          {
+            "id": 16,
+            "nombre": "Capuchino",
+            "precio": 2,
+            "categoria": 5,
+            "cantidad": 1
+          }
+        ]
+      },
+      "id": 2
+    },
+    {
+      "mesero": "Frank",
+      "cliente": {
+        "mesa": "1",
+        "hora": "13:23",
+        "pedido": [
+          {
+            "id": 3,
+            "nombre": "Pizza grande",
+            "precio": 20,
+            "categoria": 1,
+            "cantidad": 1
+          },
+          {
+            "id": 20,
+            "nombre": "helado de chocolate",
+            "precio": 2,
+            "categoria": 2,
+            "cantidad": 2
+          },
+          {
+            "id": 10,
+            "nombre": "Jugo de parchita",
+            "precio": 2,
+            "categoria": 3,
+            "cantidad": 2
+          }
+        ]
+      },
+      "id": 3
+    }
+  ]
 }

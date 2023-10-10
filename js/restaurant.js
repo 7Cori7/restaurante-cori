@@ -472,17 +472,16 @@ function limpiarHTML(){
     }
 }
 
-function guradarPedido(){
+async function guradarPedido(){
     console.log('Guardando el pedido');
 
-     async () => {
-
+    
         await fetch('http://localhost:3000/clientes', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({cliente})
+            body:JSON.stringify({mesero:mesero.nombre,cliente})
         })
 
         const respuesta = await fetch('http://localhost:3000/clientes', {
@@ -491,12 +490,11 @@ function guradarPedido(){
 
         const clientes = await respuesta.json();
 
-        const client = clientes.find(i=>i.length===cliente.length);
+        const client = clientes.find(i=>i.mesero===mesero.nombre);
 
         localStorage.setItem('mesas', JSON.stringify(client))
         window.location.href = '../tareas/tareas.html';
 
-    }
 
     
 }
@@ -505,14 +503,3 @@ cerrarBtn.addEventListener('click', async e=> {
     localStorage.removeItem('user');
     window.location.href = '../home/index.html';
 })
-
-
-//todo: HACER UNA FUNCION PARA AGREGAR OTRAS MESAS (con un asign-await) como en el ejercicio agregar-crea usuario. Con un JSON array que tenga:
-
-//* Mesero(JSON array) y mesas/clientes(JSON array)
-
-// Con inicio de sesion para el mesero
-
-// Guardar el cliente (mesa) con el id del mesero y su pedido
-
-// Menu
