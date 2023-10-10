@@ -475,8 +475,30 @@ function limpiarHTML(){
 function guradarPedido(){
     console.log('Guardando el pedido');
 
-    localStorage.setItem('mesas', JSON.stringify(cliente))
-    window.location.href = '../tareas/tareas.html';
+     async () => {
+
+        await fetch('http://localhost:3000/clientes', {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({cliente})
+        })
+
+        const respuesta = await fetch('http://localhost:3000/clientes', {
+        method:'GET'
+        });
+
+        const clientes = await respuesta.json();
+
+        const client = clientes.find(i=>i.length===cliente.length);
+
+        localStorage.setItem('mesas', JSON.stringify(client))
+        window.location.href = '../tareas/tareas.html';
+
+    }
+
+    
 }
 
 cerrarBtn.addEventListener('click', async e=> {
