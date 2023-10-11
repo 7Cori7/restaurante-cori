@@ -1,5 +1,7 @@
 const mesero = JSON.parse(localStorage.getItem('user'));
+const mesa = JSON.parse(localStorage.getItem('mesa'));
 console.log(mesero)
+console.log(mesa)
 
 //* Selectores:
 const btnGuardarCliente = document.querySelector('#guardar-cliente');
@@ -29,6 +31,7 @@ const categorias = {
 }
 
 //* Eventos:
+
 btnGuardarCliente.addEventListener('click', guardarCliente);
 
 perfilBtn.addEventListener('click', async e=> {
@@ -177,7 +180,7 @@ function agregarOrden(producto){
 
         }else{
             //caso de que no exista el producto, agregamos el nuevo producto al arreglo:
-            cliente.pedido = [...pedido, producto];       
+            cliente.pedido = [...pedido, producto];
         }
     }else{
         //caso en que cantidad es 0
@@ -472,13 +475,6 @@ function mensajePedidoVacio(){
     contenido.appendChild(texto);
 }
 
-function limpiarHTML(){
-    const contenido = document.querySelector('#resumen .contenido');
-    while(contenido.firstChild){
-        contenido.removeChild(contenido.firstChild);
-    }
-}
-
 async function guradarPedido(){
     ////console.log('Guardando el pedido');
 
@@ -489,7 +485,18 @@ async function guradarPedido(){
             },
             body:JSON.stringify({mesero:mesero.nombre,cliente})
         })
-
+        localStorage.setItem('mesa', JSON.stringify({...cliente}))
         window.location.href = '../tareas/tareas.html';
     
 }
+
+
+function limpiarHTML(){
+    const contenido = document.querySelector('#resumen .contenido');
+    while(contenido.firstChild){
+        contenido.removeChild(contenido.firstChild);
+    }
+}
+
+
+

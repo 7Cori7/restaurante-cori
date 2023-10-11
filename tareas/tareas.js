@@ -1,5 +1,7 @@
 const mesero = JSON.parse(localStorage.getItem('user'));
+const mesa = JSON.parse(localStorage.getItem('mesa'));
 console.log(mesero)
+console.log(mesa)
 
 //* SELECTORES:
 const BtnNuevoP = document.querySelector('#form-btn');
@@ -57,6 +59,8 @@ async function obtenerLista(){
     //Mostrar lista en pantalla:
     userList.forEach(i => { 
 
+        let pedidos = JSON.stringify(i.cliente.pedido);
+
         const listado = document.createElement('li');
         listado.innerHTML = `
         <li id=${i.id} class="todo-item">
@@ -65,11 +69,13 @@ async function obtenerLista(){
         <p>Hora ${i.cliente.hora}</p>
         <p style="font-weight: bold">Total: $${i.cliente.total}</p>
         <button class="check-btn">&#10003;</button>
+        <li>${pedidos}</li>
         </li>`;
         lista.appendChild(listado);
     })
 
 }
+
 
 lista.addEventListener('click', async e=> {
     if(e.target.classList.contains('delete-btn')){

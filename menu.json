@@ -143,65 +143,57 @@
     {
       "mesero": "Luna",
       "cliente": {
-        "mesa": "3",
-        "hora": "19:38",
+        "mesa": "2",
+        "hora": "23:34",
         "pedido": [
           {
-            "id": 3,
-            "nombre": "Pizza grande",
-            "precio": 20,
+            "id": 1,
+            "nombre": "Pizza pequena",
+            "precio": 10,
             "categoria": 1,
-            "cantidad": 1
+            "cantidad": 2
           },
           {
-            "id": 2,
-            "nombre": "Pizza mediana",
-            "precio": 15,
-            "categoria": 1,
-            "cantidad": 1
-          },
-          {
-            "id": 17,
-            "nombre": "Cerveza",
-            "precio": 0.5,
-            "categoria": 6,
-            "cantidad": 4
+            "id": 8,
+            "nombre": "Jugo de naranja",
+            "precio": 2,
+            "categoria": 3,
+            "cantidad": 2
           }
         ],
-        "total": "44.77"
+        "total": "29.04"
       },
-      "id": 1,
-      "checked": true
+      "id": 1
     },
     {
       "mesero": "Luna",
       "cliente": {
-        "mesa": "7",
-        "hora": "18:43",
+        "mesa": "1",
+        "hora": "02:34",
         "pedido": [
-          {
-            "id": 6,
-            "nombre": "Torta de chocolate",
-            "precio": 5,
-            "categoria": 2,
-            "cantidad": 1
-          },
           {
             "id": 7,
             "nombre": "Torta de fresa",
             "precio": 5,
             "categoria": 2,
-            "cantidad": 1
+            "cantidad": 3
+          },
+          {
+            "id": 14,
+            "nombre": "Cafe",
+            "precio": 2,
+            "categoria": 5,
+            "cantidad": 2
           },
           {
             "id": 15,
             "nombre": "Late vainilla",
             "precio": 2,
             "categoria": 5,
-            "cantidad": 2
+            "cantidad": 1
           }
         ],
-        "total": "16.94"
+        "total": "25.41"
       },
       "id": 2
     }
