@@ -196,6 +196,63 @@
         "total": "25.41"
       },
       "id": 2
+    },
+    {
+      "mesero": "Leo",
+      "cliente": {
+        "mesa": "2",
+        "hora": "15:32",
+        "pedido": [
+          {
+            "id": 3,
+            "nombre": "Pizza grande",
+            "precio": 20,
+            "categoria": 1,
+            "cantidad": 2
+          },
+          {
+            "id": 9,
+            "nombre": "Jugo de fresa",
+            "precio": 2,
+            "categoria": 3,
+            "cantidad": 1
+          },
+          {
+            "id": 10,
+            "nombre": "Jugo de parchita",
+            "precio": 2,
+            "categoria": 3,
+            "cantidad": 1
+          }
+        ],
+        "total": "53.24"
+      },
+      "id": 3
+    },
+    {
+      "mesero": "Leo",
+      "cliente": {
+        "mesa": "2",
+        "hora": "15:35",
+        "pedido": [
+          {
+            "id": 5,
+            "nombre": "Pie de parchita",
+            "precio": 5,
+            "categoria": 2,
+            "cantidad": 3
+          },
+          {
+            "id": 14,
+            "nombre": "Cafe",
+            "precio": 2,
+            "categoria": 5,
+            "cantidad": 3
+          }
+        ],
+        "total": "25.41"
+      },
+      "id": 4
     }
   ]
 }

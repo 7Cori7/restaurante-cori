@@ -54,12 +54,22 @@ async function obtenerLista(){
     const list = await respuesta.json();
     const userList = list.filter(i => i.mesero === mesero.nombre);
 
-    console.log(userList)
+    //console.log(userList)
 
     //Mostrar lista en pantalla:
     userList.forEach(i => { 
 
         let pedidos = JSON.stringify(i.cliente.pedido);
+
+        let pedidoJ = JSON.parse(pedidos);
+
+        console.log(i.cliente.pedido[0].nombre)
+
+        const {nombre,precio,cantidad} = pedidoJ;
+
+        console.log(i.cliente.pedido)
+
+        ///console.log(nombre,precio,cantidad)
 
         const listado = document.createElement('li');
         listado.innerHTML = `
@@ -69,7 +79,10 @@ async function obtenerLista(){
         <p>Hora ${i.cliente.hora}</p>
         <p style="font-weight: bold">Total: $${i.cliente.total}</p>
         <button class="check-btn">&#10003;</button>
-        <li>${pedidos}</li>
+
+        <li>${i.cliente.pedido[0].nombre}</li>//todo<---reiterar el arreglo pedido con un forEach para ir generando uno por uno en cada posicion...el forEach debe estar dentro de este forEach
+    
+        
         </li>`;
         lista.appendChild(listado);
     })
