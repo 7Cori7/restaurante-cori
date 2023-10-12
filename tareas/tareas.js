@@ -59,15 +59,14 @@ async function obtenerLista(){
     //Mostrar lista en pantalla:
     userList.forEach(i => { 
 
-        let pedidos = JSON.stringify(i.cliente.pedido);
-
-        let pedidoJ = JSON.parse(pedidos);
-
         console.log(i.cliente.pedido[0].nombre)
 
-        const {nombre,precio,cantidad} = pedidoJ;
+        userList.cliente.pedido.nombre.forEach(i=>{
+            const nombreLi = document.createElement('p');
+        })
 
-        console.log(i.cliente.pedido)
+        console.log(nombreLi)
+
 
         ///console.log(nombre,precio,cantidad)
 
