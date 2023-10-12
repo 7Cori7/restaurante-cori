@@ -59,13 +59,13 @@ async function obtenerLista(){
     //Mostrar lista en pantalla:
     userList.forEach(i => { 
 
-        console.log(i.cliente.pedido[0].nombre)
+        console.log(i.cliente.pedido[0].nombre) //<---asi se puede extraer el primer nombre, pero tengo que iterar en todas las posiciones
 
-        userList.cliente.pedido.nombre.forEach(i=>{
-            const nombreLi = document.createElement('p');
+        const nombreli =  i.cliente.pedido.forEach(item=>{
+            return item.cliente.pedido.nombre
         })
 
-        console.log(nombreLi)
+        console.log(nombreli)
 
 
         ///console.log(nombre,precio,cantidad)
