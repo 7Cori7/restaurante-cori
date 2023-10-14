@@ -1,7 +1,5 @@
 const mesero = JSON.parse(localStorage.getItem('user'));
-const mesa = JSON.parse(localStorage.getItem('mesa'));
 console.log(mesero)
-console.log(mesa)
 
 //* SELECTORES:
 const BtnNuevoP = document.querySelector('#form-btn');
@@ -54,37 +52,52 @@ async function obtenerLista(){
     const list = await respuesta.json();
     const userList = list.filter(i => i.mesero === mesero.nombre);
 
-    //console.log(userList)
+    console.log(userList)
 
     //Mostrar lista en pantalla:
     userList.forEach(i => { 
 
-        console.log(i.cliente.pedido[0].nombre) //<---asi se puede extraer el primer nombre, pero tengo que iterar en todas las posiciones
+        //Mostrar la mesa:
+        const listMesa = document.createElement('li');
+            listMesa.innerHTML = `
+            <li id=${i.id} class="todo-item">
+            <button class="delete-btn">&#10006;</button>
+            <p class="${i.checked ? 'check-todo' : false}" style="font-weight: bold">MESA ${i.cliente.mesa}</p>
+            <p>Hora ${i.cliente.hora}</p>
+            <p style="font-weight: bold">Total: $${i.cliente.total}</p>
+            <button class="check-btn">&#10003;</button>  
+            </li>`;
 
-        const nombreli =  i.cliente.pedido.forEach(item=>{
-            return item.cliente.pedido.nombre
-        })
-
-        console.log(nombreli)
+            lista.appendChild(listMesa);
 
 
-        ///console.log(nombre,precio,cantidad)
 
-        const listado = document.createElement('li');
-        listado.innerHTML = `
-        <li id=${i.id} class="todo-item">
-        <button class="delete-btn">&#10006;</button>
-        <p class="${i.checked ? 'check-todo' : false}" style="font-weight: bold">MESA ${i.cliente.mesa}</p>
-        <p>Hora ${i.cliente.hora}</p>
-        <p style="font-weight: bold">Total: $${i.cliente.total}</p>
-        <button class="check-btn">&#10003;</button>
+        //console.log(i.cliente.pedido[0].nombre)<---asi se puede extraer el primer nombre, pero tengo que iterar en todas las posiciones:
 
-        <li>${i.cliente.pedido[0].nombre}</li>//todo<---reiterar el arreglo pedido con un forEach para ir generando uno por uno en cada posicion...el forEach debe estar dentro de este forEach
+            //Mostrar los pedidos:
+            i.cliente.pedido.forEach(item=>{
+
+                const {nombre,cantidad,precio} = item;
     
-        
-        </li>`;
-        lista.appendChild(listado);
-    })
+                const nombreProducto = nombre;
+                const cantidadProducto = 'Cantidad: '+cantidad;
+                const precioProducto = 'Precio: $'+precio;
+    
+                const listado = document.createElement('li');
+                listado.innerHTML = `
+                <li class="todo-item">   
+    
+                <li style="font-weight: bold">${nombreProducto}</li>
+                <li>${cantidadProducto}</li>
+                <li>${precioProducto}</li>
+    
+                </li>`;
+    
+                lista.appendChild(listado);
+    
+            });
+
+    });
 
 }
 

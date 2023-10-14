@@ -485,7 +485,6 @@ async function guradarPedido(){
             },
             body:JSON.stringify({mesero:mesero.nombre,cliente})
         })
-        localStorage.setItem('mesa', JSON.stringify({...cliente}))
         window.location.href = '../tareas/tareas.html';
     
 }
