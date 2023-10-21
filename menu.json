@@ -300,6 +300,38 @@
         "total": "22.99"
       },
       "id": 8
+    },
+    {
+      "mesero": "Frank",
+      "cliente": {
+        "mesa": "5",
+        "hora": "17:37",
+        "pedido": [
+          {
+            "id": 12,
+            "nombre": "Pollo en brasa",
+            "precio": 6,
+            "categoria": 4,
+            "cantidad": 3
+          },
+          {
+            "id": 17,
+            "nombre": "Cerveza",
+            "precio": 0.5,
+            "categoria": 6,
+            "cantidad": 3
+          },
+          {
+            "id": 18,
+            "nombre": "Ron",
+            "precio": 2,
+            "categoria": 6,
+            "cantidad": 3
+          }
+        ],
+        "total": "30.86"
+      },
+      "id": 9
     }
   ]
 }
