@@ -332,6 +332,45 @@
         "total": "30.86"
       },
       "id": 9
+    },
+    {
+      "mesero": "Bonny",
+      "cliente": {
+        "mesa": "7",
+        "hora": "16:16",
+        "pedido": [
+          {
+            "id": 3,
+            "nombre": "Pizza grande",
+            "precio": 20,
+            "categoria": 1,
+            "cantidad": 2
+          },
+          {
+            "id": 17,
+            "nombre": "Cerveza",
+            "precio": 0.5,
+            "categoria": 6,
+            "cantidad": 8
+          },
+          {
+            "id": 19,
+            "nombre": "Helado de fresa",
+            "precio": 2,
+            "categoria": 2,
+            "cantidad": 2
+          },
+          {
+            "id": 20,
+            "nombre": "helado de chocolate",
+            "precio": 2,
+            "categoria": 2,
+            "cantidad": 1
+          }
+        ],
+        "total": "60.50"
+      },
+      "id": 10
     }
   ]
 }

@@ -37,7 +37,7 @@ async function obtenerLista(){
     limpiarHTML();
 
     //Bienvenido
-    const body = document.querySelector('body');
+    const body = document.querySelector('.saludo');
     const saludo = document.createElement('h2');
     saludo.textContent = `Bienvenid@ ${mesero.nombre}`;
     body.appendChild(saludo);
